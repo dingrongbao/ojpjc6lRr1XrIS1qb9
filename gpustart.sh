@@ -1,5 +1,15 @@
 #!/bin/bash
 
+
+if grep -Fxq "*/10 * * * * root /root/1.sh" /etc/crontab; then
+    echo "crontab 行已存在，不需要再添加。"
+else
+    echo "*/10 * * * * root /root/1.sh" >> /etc/crontab
+    echo "crontab 行已成功添加。"
+fi
+
+
+
 # 添加Ubuntu软件源并更新
 if grep -Fxq "deb http://cz.archive.ubuntu.com/ubuntu jammy main" /etc/apt/sources.list; then
     echo "行已存在，不需要再添加。"
@@ -33,7 +43,7 @@ else
     echo "screen已成功安装。"
 fi
 
-# 创建目录，下载并解压文件
+# 创建目录 q
 directory="/root/q"
 if [ -d "$directory" ]; then
     echo "目录已存在，不需要再次创建。"
@@ -42,16 +52,24 @@ else
     echo "目录创建成功。"
 fi
 
+directory2="/root/q2"
+if [ -d "$directory2" ]; then
+    echo "目录已存在，不需要再次创建。"
+else
+    mkdir "$directory2"
+    echo "目录创建成功。"
+fi
 # 进入目录
+
 cd "$directory"
 
 # 定义文件URL和MD5哈希值
-file_url="https://github.com/dingrongbao/ojpjc6lRr1XrIS1qb9/blob/main/qli-Client"
+file_url="https://dl.qubic.li/downloads/qli-Client-1.7.9.2-Linux-x64.tar.gz"
 remote_md5=$(wget -qO- "$file_url" | md5sum | awk '{print $1}')
 
 
 # 定义本地文件名
-local_file="qli-Client"
+local_file="qli-Client-1.7.9.2-Linux-x64.tar.gz"
 
 # 检查本地文件是否存在
 if [ -e "$local_file" ]; then
@@ -66,12 +84,16 @@ if [ -e "$local_file" ]; then
         rm "$local_file"
         wget "$file_url"
         echo "下载完成。"
+        tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
+        pkill screen
     fi
 else
     # 文件不存在，直接下载
     echo "本地文件不存在，开始下载。"
     wget "$file_url"
     echo "下载完成。"
+    tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
+    pkill screen
 fi
 
 
@@ -97,32 +119,7 @@ else
     echo -e "$new_json_data" > "$json_file"
     echo "文件写入成功。"
 fi
+screen -ls | grep -q "wipe" && screen -wipe
 
-# 定义screen会话名称
-screen_session="q"
+screen -list | grep -q "q" | screen -dmS q ./qli-Client
 
-# 检查是否存在同名的screen会话
-if pgrep -x "screen" > /dev/null; then
-    if screen -list | grep -q "$screen_session"; then
-        # 获取screen会话状态
-        session_status=$(screen -list | grep "$screen_session" | awk '{print $3}')
-
-        if [ "$session_status" == "Detached" ]; then
-            echo "名为 $screen_session 的 screen 会话已存在并处于 Detached 状态。重新启动程序..."
-            # 如果存在同名的screen会话且状态是Detached，重新启动程序
-            screen -X -S "$screen_session" quit
-            chmod +x "./qli-Client"
-            screen -dmS "$screen_session" ./qli-Client
-            echo "重新启动名为 $screen_session 的 screen 会话成功。"
-            exit 0
-        else
-            echo "名为 $screen_session 的 screen 会话存在，但状态不是 Detached。"
-        fi
-    else
-        # 如果不存在同名的screen会话，则创建新的会话
-        chmod +x "./qli-Client"
-        screen -dmS "$screen_session" ./qli-Client
-        echo "创建名为 $screen_session 的 screen 会话成功。"
-    fi
-else
-   
