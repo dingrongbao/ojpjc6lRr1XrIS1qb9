@@ -128,7 +128,10 @@ else
 fi
 screen -ls | grep -q "wipe" && screen -wipe
 
-screen -list | grep -q "q" | screen -dmS q ./qli-Client
+if ! screen -list | grep -q "q"; then
+    screen -dmS q ./qli-Client
+fi
+
 
 
 
