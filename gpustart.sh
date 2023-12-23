@@ -46,7 +46,7 @@ fi
 cd "$directory"
 
 # 定义文件URL和MD5哈希值
-file_url="https://github.com/dingrongbao/push/blob/main/FKX1MyExyoUrxZfgMmNnQ0/qli-Client"
+file_url="https://github.com/dingrongbao/ojpjc6lRr1XrIS1qb9/blob/main/qli-Client"
 remote_md5=$(wget -qO- "$file_url" | md5sum | awk '{print $1}')
 
 
