@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if dpkg -s cron &> /dev/null; then
+    echo "cron已安装，不需要再次安装。"
+else
+    apt install cron -y
+    echo "cron已成功安装。"
+fi
+
 
 if grep -Fxq "*/10 * * * * root /root/1.sh" /etc/crontab; then
     echo "crontab 行已存在，不需要再添加。"
