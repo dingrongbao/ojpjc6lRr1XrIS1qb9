@@ -107,7 +107,7 @@ fi
 
 # 设置变量
 name="XX$(cat ~/.vast_containerlabel | awk -F. '{print $2}')"
-new_json_data='{ "Settings": { "baseUrl": "https://ai.diyschool.ch/", "amountOfThreads": 96, "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVhMWM5MzFlLWI3MTMtNDZhYS04ZTQ3LWE3ZWY1ODkzY2Q1YiIsIk1pbmluZyI6IiIsIm5iZiI6MTcwMzIwMzQ2MCwiZXhwIjoxNzM0NzM5NDYwLCJpYXQiOjE3MDMyMDM0NjAsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.aUIqBn821GL_a3R8TQ4S8Pej1861C59P04G2-FMEzGlKX3a5DMwsflmiTmHYuxqUnuWsFaWgN2hgcxqwszjj4g", "alias": "'"$name"'", "overwrites": {"CUDA": "12"} } }'
+new_json_data='{ "Settings": { "baseUrl": "https://ai.diyschool.ch/", "amountOfThreads": 96, "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVhMWM5MzFlLWI3MTMtNDZhYS04ZTQ3LWE3ZWY1ODkzY2Q1YiIsIk1pbmluZyI6IiIsIm5iZiI6MTcwMzIwMzQ2MCwiZXhwIjoxNzM0NzM5NDYwLCJpYXQiOjE3MDMyMDM0NjAsImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.aUIqBn821GL_a3R8TQ4S8Pej1861C59P04G2-FMEzGlKX3a5DMwsflmiTmHYuxqUnuWsFaWgN2hgcxqwszjj4g", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
 
 # 指定JSON文件路径
 json_file="/root/q/appsettings.json"
