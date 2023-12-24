@@ -121,11 +121,13 @@ if [ -e "$json_file" ]; then
         # 写入新的JSON数据
         echo -e "$new_json_data" > "$json_file"
         echo "文件内容更新成功。"
+	pkill screen
     fi
 else
     # 文件不存在，直接写入
     echo -e "$new_json_data" > "$json_file"
     echo "文件写入成功。"
+    pkill screen
 fi
 
 
@@ -148,11 +150,13 @@ if [ -e "$json_file" ]; then
         # 写入新的JSON数据
         echo -e "$new_json_data2" > "$json_file"
         echo "文件内容更新成功。"
+	pkill screen
     fi
 else
     # 文件不存在，直接写入
     echo -e "$new_json_data2" > "$json_file"
     echo "文件写入成功。"
+    pkill screen
 fi
 
 
