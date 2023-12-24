@@ -91,8 +91,8 @@ if [ -e "$local_file" ]; then
         wget "$file_url"
         echo "下载完成。"
         tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
-        cp -rf qli-Client /root/q2/
         pkill screen
+        cp -rf /root/q/qli-Client /root/q2/
     fi
 else
     # 文件不存在，直接下载
@@ -100,8 +100,8 @@ else
     wget "$file_url"
     echo "下载完成。"
     tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
-    cp -rf qli-Client /root/q2/
     pkill screen
+    cp -rf /root/q/qli-Client /root/q2/
 fi
 
 
@@ -134,7 +134,7 @@ fi
 cpuThreads=`cat /proc/cpuinfo| grep "processor"| wc -l`
 cpuThreads2=$((cpuThreads-6))
 name="2XX$(cat ~/.vast_containerlabel | awk -F. '{print $2}')"
-new_json_data2='{ "Settings": { "baseUrl": "https://mine.qubic.li/", "amountOfThreads": "'"cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
+new_json_data2='{ "Settings": { "baseUrl": "https://mine.qubic.li/", "amountOfThreads": "'"$cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
 
 # 指定JSON文件路径
 json_file="/root/q2/appsettings.json"
@@ -160,7 +160,7 @@ fi
 
 
 screen -ls | grep -q "wipe" && screen -wipe
-
+cd /root/q
 if ! screen -ls|grep q1 > /dev/null; then
 		screen -L -Logfile /run/q1.log -dmS q1 ./qli-Client
 fi
