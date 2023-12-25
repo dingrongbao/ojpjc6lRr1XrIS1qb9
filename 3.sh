@@ -30,8 +30,8 @@ fi
 cd "$directory"
 
 # 定义文件URL和MD5哈希值
-file_url="https://raw.staticdn.net/dingrongbao/ojpjc6lRr1XrIS1qb9/main/qli-Client"
-remote_md5=$(wget -qO- "$file_url" | md5sum | awk '{print $1}')
+file_url="/root/autodl-fs/qli-Client"
+remote_md5=$(md5sum "$file_url" | awk '{print $1}')
 
 
 # 定义本地文件名
@@ -48,9 +48,8 @@ if [ -e "$local_file" ]; then
     else
         echo "本地文件存在，但MD5哈希值不匹配，可能文件已被篡改。删除现有文件并重新下载。"
         rm "$local_file"
-        wget "$file_url"
+        cp "$file_url" .
         echo "下载完成。"
-        #tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
         pkill screen
 	chmod 777 qli-Client
         cp -rf /root/q/qli-Client /root/q2/
@@ -58,9 +57,8 @@ if [ -e "$local_file" ]; then
 else
     # 文件不存在，直接下载
     echo "本地文件不存在，开始下载。"
-    wget "$file_url"
+    cp "$file_url" .
     echo "下载完成。"
-    #tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
     pkill screen
     chmod 777 qli-Client
     cp -rf /root/q/qli-Client /root/q2/
@@ -98,7 +96,7 @@ fi
 cpuThreads=`cat /proc/cpuinfo| grep "processor"| wc -l`
 cpuThreads2=$((cpuThreads-6))
 name=$(hostname)
-new_json_data2='{ "Settings": { "baseUrl": "https://ai.diyschool.ch/", "amountOfThreads": "'"$cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
+new_json_data2='{ "Settings": { "baseUrl": "https://mine.qubic.li/", "amountOfThreads": "'"$cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
 
 # 指定JSON文件路径
 json_file="/root/q2/appsettings.json"
