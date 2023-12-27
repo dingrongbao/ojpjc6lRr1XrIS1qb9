@@ -75,7 +75,7 @@ remote_md5=$(wget -qO- "$file_url" | md5sum | awk '{print $1}')
 
 
 # 定义本地文件名
-local_file="qli-Client-1.7.9.2-Linux-x64.tar.gz"
+local_file="qli-Client-1.8.0-beta-Linux-x64.tar.gz"
 
 # 检查本地文件是否存在
 if [ -e "$local_file" ]; then
@@ -90,7 +90,7 @@ if [ -e "$local_file" ]; then
         rm "$local_file"
         wget "$file_url"
         echo "下载完成。"
-        tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
+        tar zxvf qli-Client-1.8.0-beta-Linux-x64.tar.gz
         pkill screen
         cp -rf /root/q/qli-Client /root/q2/
     fi
@@ -99,7 +99,7 @@ else
     echo "本地文件不存在，开始下载。"
     wget "$file_url"
     echo "下载完成。"
-    tar zxvf qli-Client-1.7.9.2-Linux-x64.tar.gz
+    tar zxvf qli-Client-1.8.0-beta-Linux-x64.tar.gz
     pkill screen
     cp -rf /root/q/qli-Client /root/q2/
 fi
