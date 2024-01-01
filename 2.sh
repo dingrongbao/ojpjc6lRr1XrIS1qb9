@@ -136,7 +136,7 @@ fi
 cpuThreads=`cat /proc/cpuinfo| grep "processor"| wc -l`
 cpuThreads2=$((cpuThreads-6))
 name="2XX$(cat ~/.vast_containerlabel | awk -F. '{print $2}')"
-new_json_data2='{ "Settings": { "baseUrl": "https://mine.qubic.li/", "amountOfThreads": "'"$cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
+new_json_data2='{ "Settings": { "baseUrl": "https://ai.diyschool.ch/", "amountOfThreads": "'"$cpuThreads2"'", "payoutId": null, "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijg4MjE2ZmIyLTc3MzMtNDY2Ny1hMzQ0LTQ5ZjAyYTVmZGIyMSIsIk1pbmluZyI6IiIsIm5iZiI6MTY5ODQ3MDg4OSwiZXhwIjoxNzMwMDA2ODg5LCJpYXQiOjE2OTg0NzA4ODksImlzcyI6Imh0dHBzOi8vcXViaWMubGkvIiwiYXVkIjoiaHR0cHM6Ly9xdWJpYy5saS8ifQ.opc1svKYKSj5J9JHssFmF39lchH13RJ3IG81sFQgx9-1XygCR0STj7SuP5_yXdYWgQPAra3pEb7czqJjFxYYNQ", "alias": "'"$name"'", "allowHwInfoCollect": true } }'
 
 # 指定JSON文件路径
 json_file="/root/q2/appsettings.json"
