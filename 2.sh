@@ -54,7 +54,7 @@ fi
 cd "$directory"
 
 # 定义文件URL和MD5哈希值
-file_url="https://dl.qubic.li/downloads/qli-Client-1.8.0-beta-Linux-x64.tar.gz"
+file_url="https://dl.qubic.li/downloads/qli-Client-1.8.3-Linux-x64.tar.gz"
 remote_md5=$(wget -qO- "$file_url" | md5sum | awk '{print $1}')
 
 
